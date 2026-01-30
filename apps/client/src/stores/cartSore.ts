@@ -2,7 +2,7 @@ import {
   CartItemType,
   CartStoreActionsType,
   CartStoreStateType,
-} from "@/components/types";
+} from "@repo/types";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { ProductType } from "./types";
+import { ProductType } from "@repo/types";
 import { string } from "zod";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Minus, Plus, ShoppingCart } from "lucide-react";

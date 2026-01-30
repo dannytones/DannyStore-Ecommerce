@@ -1,7 +1,8 @@
 import ProductInterection from "@/components/ProductInterection";
-import { ProductType } from "@/components/types";
+import { ProductType } from "@repo/types";
 import Image from "next/image";
 // Temporary
+
 const product: ProductType = {
   id: 1,
   name: "Adidas CoreFit T-Shirt",
@@ -17,6 +18,9 @@ const product: ProductType = {
     purple: "/products/1p.png",
     green: "/products/1gr.png",
   },
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  categorySlug: "test",
 };
 export const generateMetadata = async ({
   params,
@@ -47,7 +51,9 @@ const ProductPage = async ({
       {/* IMAGE */}
       <div className="w-full lg:w-5/12 relative aspect-2/3">
         <Image
-          src={product.images?.[selectedColor] || ""}
+          src={
+            (product.images as Record<string, string>)?.[selectedColor] || ""
+          }
           alt={product.name}
           fill
           className="object-contain rounded-md"
