@@ -19,7 +19,13 @@ const OrderSchema = new Schema(
       ],
       required: true,
     },
-    address: { type: String, required: true },
+    address: {
+      city: String,
+      country: String,
+      line1: String,
+      line2: String,
+      postal_code: String,
+    },
   },
   { timestamps: true },
 );

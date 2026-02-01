@@ -128,7 +128,7 @@ const page = () => {
           ) : activeSteps === 2 ? (
             <ShippingForm setShippingForm={setShippingForm} />
           ) : activeSteps === 3 && shippingForm ? (
-            <StripePaymentForm />
+            <StripePaymentForm shippingForm={shippingForm} />
           ) : (
             <p className="text-sm text-gray-500">
               Please fill in the Shipping Adress
