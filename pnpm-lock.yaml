@@ -24,6 +24,9 @@ importers:
 
   apps/admin:
     dependencies:
+      '@clerk/nextjs':
+        specifier: ^6.36.9
+        version: 6.36.9(next@16.1.4(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.71.1(react@19.2.3))
@@ -146,6 +149,37 @@ importers:
         specifier: ^5
         version: 5.9.2
 
+  apps/auth-service:
+    dependencies:
+      '@clerk/express':
+        specifier: ^1.7.64
+        version: 1.7.64(express@5.2.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@repo/kafka':
+        specifier: workspace:*
+        version: link:../../packages/kafka
+      cors:
+        specifier: ^2.8.5
+        version: 2.8.5
+      express:
+        specifier: ^5.0.3
+        version: 5.2.1
+    devDependencies:
+      '@repo/types':
+        specifier: workspace:*
+        version: link:../../packages/types
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@types/cors':
+        specifier: ^2.8.19
+        version: 2.8.19
+      '@types/express':
+        specifier: ^5.0.6
+        version: 5.0.6
+      tsx:
+        specifier: ^4.21.0
+        version: 4.21.0
+
   apps/client:
     dependencies:
       '@clerk/nextjs':
@@ -224,6 +258,9 @@ importers:
       '@repo/order-db':
         specifier: workspace:*
         version: link:../../packages/order-db
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.1.0
       fastify:
         specifier: ^5.5.0
         version: 5.7.1
