@@ -11,12 +11,8 @@ const stripe = loadStripe(
   "pk_test_51Suq9vDQS4phHdHvTrbEWFKS3l7Aqk0iCme26hAXAEOc8EBWT1UyX3JDHDHYCH5vFpw08pBbiW8BsRQjgOxb2spB00nsiN4vLk",
 );
 
-const fetchClientSecret = async (
-  cart: CartItemsType,
-  token: string,
-): Promise<string> => {
-  console.log("backend req init..");
-  const response = await fetch(
+const fetchClientSecret = async (cart: CartItemsType, token: string) => {
+  return fetch(
     `${process.env.NEXT_PUBLIC_PAYMENT_SERVICE_URL}/sessions/create-checkout-session`,
     {
       method: "POST",
@@ -28,18 +24,9 @@ const fetchClientSecret = async (
         Authorization: `Bearer ${token}`,
       },
     },
-  );
-  console.log("response: ", response.status);
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error("error: ", errorText);
-    throw new Error(`Server error: ${response.status}`);
-  }
-
-  const json = await response.json();
-  console.log("Got Json: ", json);
-
-  return json.checkoutSessionClientSecret;
+  )
+    .then((response) => response.json())
+    .then((json) => json.checkoutSessionClientSecret);
 };
 
 const StripePaymentForm = ({
@@ -55,21 +42,8 @@ const StripePaymentForm = ({
   console.log("User loaded:", isLoaded, "User exists:", !!user);
 
   useEffect(() => {
-    console.log("init useeffect");
-
-    getToken()
-      .then((res) => {
-        console.log("get token then: ", res);
-        if (res) {
-          setToken(res);
-        } else {
-          console.warn("empty token");
-        }
-      })
-      .catch((err) => {
-        console.error("error getToken:", err);
-      });
-  }, [getToken]);
+    getToken().then((token) => setToken(token));
+  }, []);
 
   console.log("TOKEN STRIPE PAYMENT:", token);
 

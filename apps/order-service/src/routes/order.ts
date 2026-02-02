@@ -1,4 +1,4 @@
-import fastify, { FastifyInstance } from "fastify";
+import { FastifyInstance } from "fastify";
 import { shouldBeAdmin, shouldBeUser } from "../middleware/authMiddleware";
 import { Order } from "@repo/order-db";
 

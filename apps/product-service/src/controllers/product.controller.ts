@@ -81,9 +81,10 @@ export const getProducts = async (req: Request, res: Response) => {
 
   const products = await prisma.product.findMany({
     where: {
-      category: {
-        slug: category as string,
-      },
+      category:
+        category && category !== "all"
+          ? { slug: category as string }
+          : undefined,
       name: {
         contains: search as string,
         mode: "insensitive",

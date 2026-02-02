@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 
 const ReturnPage = async ({
   searchParams,
@@ -9,23 +8,18 @@ const ReturnPage = async ({
   const session_id = (await searchParams)?.session_id;
 
   if (!session_id) {
-    return <div className="">No session id found</div>;
+    return <div>No session id found!</div>;
   }
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_PAYMENT_SERVICE_URL}/sessions/${session_id}`,
   );
-
   const data = await res.json();
 
-  console.log("1", data);
-  console.log("2", data.status);
-  console.log("3", data.payment_status);
-
   return (
-    <div>
-      <h1> Payment {data.status}</h1>
-      <p> Payment status: {data.paymentStatus}</p>
+    <div className="">
+      <h1>Payment {data.status}</h1>
+      <p>Payment status: {data.paymentStatus}</p>
       <Link href="/orders">See your orders</Link>
     </div>
   );

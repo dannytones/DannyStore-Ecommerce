@@ -9,6 +9,10 @@ const CheckoutForm = ({
 }: {
   shippingForm: ShippingFormInputs;
 }) => {
+  console.log(
+    "SHIPPING FORM |||||||||||||||||||||||||||||||||||||",
+    shippingForm,
+  );
   const checkoutState = useCheckout();
 
   const [loading, setLoading] = useState(false);

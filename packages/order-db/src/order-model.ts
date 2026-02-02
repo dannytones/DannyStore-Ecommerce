@@ -9,7 +9,7 @@ const OrderSchema = new Schema(
     email: { type: String, required: true },
     amount: { type: Number, required: true },
     status: { type: String, required: true, enum: OrderStatus },
-    product: {
+    products: {
       type: [
         {
           name: { type: String, required: true },
@@ -18,13 +18,6 @@ const OrderSchema = new Schema(
         },
       ],
       required: true,
-    },
-    address: {
-      city: String,
-      country: String,
-      line1: String,
-      line2: String,
-      postal_code: String,
     },
   },
   { timestamps: true },
