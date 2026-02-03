@@ -4,7 +4,7 @@ import { ProductType } from "@repo/types";
 import Image from "next/image";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
-import useCartStore from "@/stores/cartSore";
+import useCartStore from "@/stores/cartStore";
 import { toast } from "react-toastify";
 
 const ProductCard = ({ product }: { product: ProductType }) => {
@@ -37,7 +37,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
     }));
   };
   return (
-    <div className="shadow-lg rounded-lg overflow-hidden">
+    <div className="hover:shadow-xl hover:scale-101 rounded-lg overflow-hidden transition-all duration-200">
       {/* IMAGE */}
       <Link href={`/products/${product.id}`}>
         <div className="relative aspect-2/3">
@@ -49,7 +49,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
             }
             alt={product.name}
             fill
-            className="object-cover hover:scale-105 transition-all duration-300"
+            className="object-cover hover:scale-103 transition-all duration-200"
           />
         </div>
       </Link>
@@ -57,15 +57,35 @@ const ProductCard = ({ product }: { product: ProductType }) => {
       <div className="flex flex-col gap-4 p-4">
         <h1 className="font-medium">{product.name}</h1>
         <p className="font-sm text-gray-500">{product.shortDescription}</p>
-        {/* PRODUCT TYPES */}
-        <div className="flex items-center gap-4 text-xm">
-          {/* SIZE */}
-          <div className="flex flex-col gap-1">
-            <span className="text-gray-400">Size</span>
+        {/* PRODUCT TYPES - Row layout */}
+        <div className="flex items-center justify-between py-1">
+          {/* COLORS */}
+          <div className="flex items-center gap-2">
+            {product.colors.map((color) => (
+              <button
+                key={color}
+                onClick={() =>
+                  handleProductType({ type: "color", value: color })
+                }
+                className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${
+                  productTypes.color === color
+                    ? "ring-2 ring-neutral-900 ring-offset-2"
+                    : "ring-1 ring-neutral-200"
+                }`}
+                style={{ backgroundColor: color }}
+              />
+            ))}
+          </div>
+
+          {/* SIZE DROPDOWN  */}
+          <div className="flex items-center gap-2">
+            <span className="text-xs uppercase text-neutral-400 font-bold">
+              Size
+            </span>
             <select
               name="size"
               id="size"
-              className="ring ring-gray-300 rounded-md px-2 py-1"
+              className="bg-transparent text-sm font-bold text-neutral-900 focus:outline-none cursor-pointer appearance-none border-b border-transparent hover:border-neutral-900 transition-colors"
               onChange={(e) =>
                 handleProductType({ type: "size", value: e.target.value })
               }
@@ -76,30 +96,6 @@ const ProductCard = ({ product }: { product: ProductType }) => {
                 </option>
               ))}
             </select>
-          </div>
-          {/* COLORS */}
-          <div className="flex flex-col gap-1 ">
-            <span className="text-gray-400">color</span>
-            <div className="flex items-center gap-2">
-              {product.colors.map((color) => (
-                <div
-                  className={`cursor-pointer border-1 ${
-                    productTypes.color === color
-                      ? "border-gray-500"
-                      : "border-gray-300"
-                  } rounded-full flex items-center justify-center w-[20px] h-[20px]`}
-                  key={color}
-                  onClick={() =>
-                    handleProductType({ type: "color", value: color })
-                  }
-                >
-                  <div
-                    className="w-[14px] h-[14px] rounded-full"
-                    style={{ backgroundColor: color }}
-                  ></div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
         {/* PRICE AND ADD TO CART BUTTON */}

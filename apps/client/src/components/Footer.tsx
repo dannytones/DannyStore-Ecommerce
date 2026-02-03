@@ -4,7 +4,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="mt-16 flex flex-col items-center md:flex-row md:items-start md:justify-between md:gap-0 bg-slate-800 p-8 rounded-lg">
+    <div className="w-full mt-16 flex flex-col items-center md:flex-row md:items-start md:justify-between md:gap-0 bg-slate-800 p-8 rounded-lg">
       <div className="flex flex-col gap-4 items-center md:items-start">
         <Link href="/" className="flex items-center">
           <Image src="/logoD.svg" alt="DannyLogo" width={36} height={36} />

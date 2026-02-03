@@ -5,7 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
 import CheckoutForm from "./CheckoutForm";
 import { CartItemsType, ShippingFormInputs } from "@repo/types";
-import useCartStore from "@/stores/cartSore";
+import useCartStore from "@/stores/cartStore";
 
 const stripe = loadStripe(
   "pk_test_51Suq9vDQS4phHdHvTrbEWFKS3l7Aqk0iCme26hAXAEOc8EBWT1UyX3JDHDHYCH5vFpw08pBbiW8BsRQjgOxb2spB00nsiN4vLk",
@@ -38,14 +38,12 @@ const StripePaymentForm = ({
   const { getToken } = useAuth();
   const [token, setToken] = useState<string | null>(null);
   const { user, isLoaded } = useUser();
-  const [clientSecret, setClientSecret] = useState<string | null>(null); // Додаємо стейт для секрету
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
   console.log("User loaded:", isLoaded, "User exists:", !!user);
 
   useEffect(() => {
     getToken().then((token) => setToken(token));
   }, []);
-
-  console.log("TOKEN STRIPE PAYMENT:", token);
 
   useEffect(() => {
     if (token && cart.length > 0) {

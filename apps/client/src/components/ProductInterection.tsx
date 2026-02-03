@@ -4,7 +4,7 @@ import { ProductType } from "@repo/types";
 import { string } from "zod";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Minus, Plus, ShoppingCart } from "lucide-react";
-import useCartStore from "@/stores/cartSore";
+import useCartStore from "@/stores/cartStore";
 import { toast } from "react-toastify";
 
 const ProductInterection = ({
@@ -48,83 +48,84 @@ const ProductInterection = ({
     toast.success("Product added to cart");
   };
   return (
-    <div className="flex flex-col gap-4 mt-4 ">
-      {/* SIZE */}
-      <div className="flex flex-col gap-2 text-xm">
-        <span className="text-gray-500">Size</span>
-        <div className="flex items-center gap-2">
+    <div className="flex flex-col gap-8 mt-6 font-sans">
+      {/* SIZE SELECTION */}
+      <div className="flex flex-col gap-3">
+        <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-neutral-500">
+          Size
+        </span>
+        <div className="flex flex-wrap gap-2">
           {product.sizes.map((size) => (
-            <div
-              className={`cursor-pointer border p-0.5 ${
-                selectedSize === size ? "border-gray-600" : "border-gray-300"
-              }`}
+            <button
               key={size}
               onClick={() => handleTypeChange("size", size)}
+              className={`w-10 h-10 flex items-center justify-center rounded-xl text-xs font-bold transition-all duration-200 active:scale-95 ${
+                selectedSize === size
+                  ? "bg-neutral-900 text-white shadow-md shadow-neutral-200"
+                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+              }`}
             >
-              <div
-                className={`w-8 h-8 text-center flex items-center justify-center ${
-                  selectedSize === size
-                    ? "bg-black text-white"
-                    : "bg-white text-black"
-                }`}
-              >
-                {size}
-              </div>
-            </div>
+              {size.toUpperCase()}
+            </button>
           ))}
         </div>
       </div>
-      {/* COLR */}
-      <div className="flex flex-col gap-2 text-sm">
-        <span className="text-gray-500">Color</span>
-        <div className="flex items-center gap-2">
+
+      {/* COLOR SELECTION */}
+      <div className="flex flex-col gap-3">
+        <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-neutral-500">
+          Color
+        </span>
+        <div className="flex items-center gap-3">
           {product.colors.map((color) => (
-            <div
-              className={`cursor-pointer border-2 rounded-full ${
-                selectedColor === color ? "border-black" : "border-gray-300"
-              }`}
+            <button
               key={color}
               onClick={() => handleTypeChange("color", color)}
+              className={`relative w-6 h-6 rounded-full transition-all duration-200 flex items-center justify-center ${
+                selectedColor === color
+                  ? "ring-1 ring-neutral-900 ring-offset-2 scale-110"
+                  : "hover:scale-105"
+              }`}
             >
               <div
-                className={`w-5 h-5 rounded-full`}
+                className="w-full h-full rounded-full border border-neutral-200"
                 style={{ backgroundColor: color }}
-              ></div>
-            </div>
+              />
+            </button>
           ))}
         </div>
       </div>
-      {/* QUANTI */}
-      <div className="flex flex-col gap-2 text-sm">
-        <span className="text-gray-500">Quantity</span>
-        <div className="flex items-center gap-2">
+
+      {/* QUANTITY & ACTIONS */}
+      <div className="flex flex-col gap-5 pt-2">
+        <div className="flex items-center justify-between bg-neutral-100 p-1.5 rounded-2xl w-fit">
           <button
-            className="cursor-pointer border border-gray-300 p-1"
+            className="w-8 h-8 flex items-center justify-center rounded-xl bg-white hover:bg-neutral-900 hover:text-white transition-all active:scale-90 text-neutral-600"
             onClick={() => handleQuantityChange("decrement")}
           >
-            <Minus className="w-4 h-4" />
+            <Minus className="w-3 h-3" />
           </button>
-          <span>{quantity}</span>
+
+          <span className="w-10 text-center text-xs font-bold tabular-nums text-neutral-900">
+            {quantity}
+          </span>
+
           <button
-            className="cursor-pointer border border-gray-300 p-1"
+            className="w-8 h-8 flex items-center justify-center rounded-xl bg-white hover:bg-neutral-900 hover:text-white transition-all active:scale-90 text-neutral-600"
             onClick={() => handleQuantityChange("increment")}
           >
-            <Plus className="w-4 h-4" />
+            <Plus className="w-3 h-3" />
           </button>
         </div>
+        {/* BUTTONS */}
+        <button
+          onClick={handleAddToCart}
+          className="bg-gray-800 text-white px-4 py-2 rounded-md flex items-center justify-center gap-2 cursor-pointer hover:shadow-lg/20 transition-all duration-200 text-sm font-medium"
+        >
+          <Plus className="" />
+          Add to Cart
+        </button>
       </div>
-      {/* BUTTONS */}
-      <button
-        onClick={handleAddToCart}
-        className="bg-gray-800 text-white px-4 py-2 rounded-md flex items-center justify-center gap-2 cursor-pointer hover:shadow-lg/20 transition-all duration-200 text-sm font-medium"
-      >
-        <Plus className="" />
-        Add to Cart
-      </button>
-      <button className="ring ring-gray-400 text-gray-800 px-4 py-2 rounded-md  flex items-center justify-center gap-2 cursor-pointer hover:shadow-lg/20 transition-all duration-200 text-sm font-medium">
-        <ShoppingCart className="" />
-        Buy this Item
-      </button>
     </div>
   );
 };

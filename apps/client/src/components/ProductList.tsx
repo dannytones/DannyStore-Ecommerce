@@ -4,6 +4,7 @@ import Categories from "./Categories";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
 import Filter from "./Filter";
+import { ArrowRight } from "lucide-react";
 
 const fetchData = async ({
   category,
@@ -38,18 +39,26 @@ const ProductList = async ({
   return (
     <div className="w-full ">
       <Categories />
-      {params === "products" && <Filter />}
+      <div className="flex items-baseline justify-between py-6 border-neutral-100">
+        {params === "homepage" && (
+          <Link
+            href={category ? `/products/?category=${category}` : "/products"}
+            className="group flex items-center gap-3 transition-all duration-300"
+          >
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-500 group-hover:text-neutral-900 transition-colors">
+              View all Products
+            </span>
+            <ArrowRight className="w-4 h-4 text-neutral-400 transform group-hover:translate-x-1 group-hover:text-neutral-900 transition-all duration-300" />
+          </Link>
+        )}
+        {params === "products" && <Filter />}
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      <Link
-        href={category ? `/products/?category=${category}` : "/products"}
-        className="flex justify-end mt-4 underline text-md text-gray-500 font-bold"
-      >
-        View all Products
-      </Link>
     </div>
   );
 };

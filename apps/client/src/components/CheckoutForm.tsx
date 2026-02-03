@@ -9,10 +9,6 @@ const CheckoutForm = ({
 }: {
   shippingForm: ShippingFormInputs;
 }) => {
-  console.log(
-    "SHIPPING FORM |||||||||||||||||||||||||||||||||||||",
-    shippingForm,
-  );
   const checkoutState = useCheckout();
 
   const [loading, setLoading] = useState(false);
@@ -52,8 +48,24 @@ const CheckoutForm = ({
       return (
         <form>
           <PaymentElement options={{ layout: "accordion" }} />
-          <button disabled={loading} onClick={handleClick}>
-            {loading ? "loading..." : "Pay"}
+          <button
+            disabled={loading}
+            onClick={handleClick}
+            className="group relative w-full py-4  overflow-hidden transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-900"
+          >
+            {/* Анімаційний фон при ховері */}
+            <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+
+            <span className="relative z-10 flex items-center justify-center gap-2 text-sm uppercase tracking-[0.2em] font-medium transition-colors duration-300 group-hover:text-white">
+              {loading ? (
+                <>
+                  <span className="w-3 h-3   rounded-full animate-spin" />
+                  Processing
+                </>
+              ) : (
+                "Complete Purchase"
+              )}
+            </span>
           </button>
         </form>
       );
