@@ -21,7 +21,7 @@
 
 DannyStore is a full-stack, production-ready e-commerce platform that demonstrates enterprise-level software architecture and modern development practices. Built as a monorepo using Turborepo, it features a decoupled microservices backend with event-driven communication and specialized frontend applications optimized for different user roles.
 
-## Client 
+# Client 
 
 #### Front page
 
@@ -47,10 +47,7 @@ DannyStore is a full-stack, production-ready e-commerce platform that demonstrat
 
 <img width="1920" height="1284" alt="client orders" src="https://github.com/user-attachments/assets/d54623dd-6cbe-46ec-aea7-c4eba845b4e1" />
 
-## Admin
-<img width="1869" height="1296" alt="Screenshot 2026-01-22 at 21-11-02 Create Next App" src="https://github.com/user-attachments/assets/a5250f4f-6ec0-455f-84cd-051fc6e3be98" />
-
-## Prisma
+# Admin
 
 #### Home
 <img width="1920" height="1325" alt="admin home" src="https://github.com/user-attachments/assets/e58013fa-c950-4498-a2b6-a4dc3f3424ab" />
@@ -60,6 +57,9 @@ DannyStore is a full-stack, production-ready e-commerce platform that demonstrat
 
 #### Add Product
 <img width="363" height="936" alt="admin add product sidebar" src="https://github.com/user-attachments/assets/f2023477-f5fc-4f4b-bec9-7c63d8e3809a" />
+
+## Prisma
+<img width="1698" height="934" alt="prisma studio" src="https://github.com/user-attachments/assets/e49a3b96-17b9-48d6-9482-91bc05e64b3e" />
 
 **What makes this project stand out:**
 - Real-world microservices architecture with proper service boundaries
