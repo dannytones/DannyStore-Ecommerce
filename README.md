@@ -24,16 +24,27 @@ DannyStore is a full-stack, production-ready e-commerce platform that demonstrat
 ## Client 
 
 #### Front page
+
 <img width="1920" height="2204" alt="client front page" src="https://github.com/user-attachments/assets/bb4adbaa-887e-4efe-a788-7626417e5608" />
+
 #### Product Page
+
 <img width="1920" height="1115" alt="client card apge" src="https://github.com/user-attachments/assets/5834164f-55df-4733-8a8b-9e5c5433ac7b" />
+
 #### Cart
+
 <img width="1920" height="947" alt="client cart" src="https://github.com/user-attachments/assets/fe6f040a-2b7e-4f1e-ba2c-65bed5927895" />
+
 #### Stripe Payment
+
 <img width="1920" height="992" alt="client payment stripe" src="https://github.com/user-attachments/assets/e20b5fa8-f963-44ba-b085-3db8fe055750" />
+
 #### Return Page
+
 <img width="1920" height="1135" alt="client return" src="https://github.com/user-attachments/assets/3e2ef86b-e3db-4c4f-afac-ef9c3e63e029" />
+
 #### Client Orders Page
+
 <img width="1920" height="1284" alt="client orders" src="https://github.com/user-attachments/assets/d54623dd-6cbe-46ec-aea7-c4eba845b4e1" />
 
 ## Admin
