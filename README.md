@@ -76,7 +76,7 @@ DannyStore is a full-stack, production-ready e-commerce platform that demonstrat
 │                         FRONTEND LAYER                          │
 ├──────────────────────────────┬──────────────────────────────────┤
 │   Customer Storefront        │      Admin Dashboard             │
-│   (Next.js - Port 3000)      │   (Next.js - Port 3002)          │
+│   (Next.js - Port 3003)      │   (Next.js - Port 3002)          │
 │   - Product browsing         │   - Inventory management         │
 │   - Shopping cart            │   - Order processing             │
 │   - Checkout flow            │   - Analytics & reports          │
@@ -92,13 +92,13 @@ DannyStore is a full-stack, production-ready e-commerce platform that demonstrat
 ┌───────▼────────┐    ┌────────▼────────┐    ┌────────▼────────┐
 │ Product Service│    │  Order Service  │    │ Payment Service │
 │   (Express)    │    │   (Fastify)     │    │     (Hono)      │
-│   Port: 3001   │    │   Port: 3004    │    │   Port: 3003    │
+│   Port: 8000   │    │   Port: 8001    │    │   Port: 8002    │
 └───────┬────────┘    └────────┬────────┘    └────────┬────────┘
         │                      │                       │
         │             ┌────────▼────────┐              │
         │             │  Auth Service   │              │
         │             │   (Vanilla Node)│              │
-        │             │   Port: 3005    │              │
+        │             │   Port: 8003    │              │
         │             └────────┬────────┘              │
         │                      │                       │
         └──────────────────────┼───────────────────────┘
@@ -327,9 +327,9 @@ danny-ecommerce/
 └── package.json                # Root package.json
 ```
 
-## 🔧 Microservices Breakdown
+##  Microservices Breakdown
 
-### 1. Product Service (Express.js - Port 3001)
+### 1. Product Service (Express.js - Port 8000)
 **Responsibility**: Product catalog management
 
 **Why Express?**: Mature ecosystem, extensive middleware support, familiar patterns for CRUD operations.
@@ -352,7 +352,7 @@ danny-ecommerce/
 
 ---
 
-### 2. Order Service (Fastify - Port 3004)
+### 2. Order Service (Fastify - Port 8001)
 **Responsibility**: Order processing and management
 
 **Why Fastify?**: High performance (up to 30% faster than Express), built-in JSON schema validation, TypeScript-first design.
@@ -372,7 +372,7 @@ danny-ecommerce/
 
 ---
 
-### 3. Payment Service (Hono - Port 3003)
+### 3. Payment Service (Hono - Port 8002)
 **Responsibility**: Stripe payment integration
 
 **Why Hono?**: Edge-compatible, zero dependencies, blazing fast routing, perfect for payment webhooks.
@@ -391,7 +391,7 @@ danny-ecommerce/
 
 ---
 
-### 4. Auth Service (Vanilla Node.js - Port 3005)
+### 4. Auth Service (Vanilla Node.js - Port 8003)
 **Responsibility**: User authentication and authorization
 
 **Why Vanilla Node?**: Minimal overhead for simple JWT operations, demonstrates understanding of Node fundamentals.
@@ -446,14 +446,12 @@ Create `.env` files in each service directory:
 ```env
 DATABASE_URL="postgresql://user:password@localhost:5432/products"
 CLERK_SECRET_KEY="your_clerk_secret"
-PORT=3001
 ```
 
 **apps/order-service/.env**
 ```env
 MONGODB_URI="mongodb://localhost:27017/orders"
 CLERK_SECRET_KEY="your_clerk_secret"
-PORT=3004
 ```
 
 **apps/payment-service/.env**
@@ -461,7 +459,6 @@ PORT=3004
 STRIPE_SECRET_KEY="sk_test_..."
 STRIPE_WEBHOOK_SECRET="whsec_..."
 CLERK_PUBLISHABLE_KEY="pk_test_..."
-PORT=3003
 ```
 
 **apps/email-service/.env**
@@ -474,9 +471,16 @@ EMAIL_PASS="your-app-password"
 ```env
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_test_..."
 CLERK_SECRET_KEY="sk_test_..."
-NEXT_PUBLIC_PRODUCT_SERVICE_URL="http://localhost:3001"
-NEXT_PUBLIC_ORDER_SERVICE_URL="http://localhost:3004"
-NEXT_PUBLIC_PAYMENT_SERVICE_URL="http://localhost:3003"
+
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
+NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
+
+NEXT_PUBLIC_PRODUCT_SERVICE_URL = "http://localhost:8000"
+NEXT_PUBLIC_ORDER_SERVICE_URL = "http://localhost:8001"
+NEXT_PUBLIC_PAYMENT_SERVICE_URL = "http://localhost:8002"
+
 ```
 
 ### Installation
@@ -516,12 +520,12 @@ pnpm dev
 ```
 
 This will start:
-- Client (http://localhost:3000)
+- Client (http://localhost:3003)
 - Admin (http://localhost:3002)
-- Product Service (http://localhost:3001)
-- Payment Service (http://localhost:3003)
-- Order Service (http://localhost:3004)
-- Auth Service (http://localhost:3005)
+- Product Service (http://localhost:8000)
+- Order Service (http://localhost:8001)
+- Payment Service (http://localhost:8002)
+- Auth Service (http://localhost:8003)
 - Email Service (background)
 
 ## Development
