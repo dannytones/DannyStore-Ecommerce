@@ -51,9 +51,15 @@ DannyStore is a full-stack, production-ready e-commerce platform that demonstrat
 <img width="1869" height="1296" alt="Screenshot 2026-01-22 at 21-11-02 Create Next App" src="https://github.com/user-attachments/assets/a5250f4f-6ec0-455f-84cd-051fc6e3be98" />
 
 ## Prisma
-<img width="1698" height="934" alt="prisma studio" src="https://github.com/user-attachments/assets/0e07eb98-2b0a-487a-b6dc-c91673c2de51" />
 
+#### Home
+<img width="1920" height="1325" alt="admin home" src="https://github.com/user-attachments/assets/e58013fa-c950-4498-a2b6-a4dc3f3424ab" />
 
+#### All products
+<img width="1920" height="947" alt="admin all products" src="https://github.com/user-attachments/assets/09a03b69-5d30-4e41-ac92-c63a9a6ccb02" />
+
+#### Add Product
+<img width="363" height="936" alt="admin add product sidebar" src="https://github.com/user-attachments/assets/f2023477-f5fc-4f4b-bec9-7c63d8e3809a" />
 
 **What makes this project stand out:**
 - Real-world microservices architecture with proper service boundaries
