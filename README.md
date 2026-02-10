@@ -5,6 +5,9 @@
 [![Next.js](https://img.shields.io/badge/Next.js-16-black.svg)](https://nextjs.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+
+[Link to previev](https://danny-store-demo.vercel.app/)
+
 ## Table of Contents
 
 - [Overview](#overview)
